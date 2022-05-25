@@ -15,7 +15,9 @@ class LoginPageLocators():
 class ProductPageLocators():
     #Button for add product to the backet
     ADD_BUTTON = (By.CSS_SELECTOR, "button.btn-add-to-basket")
-    TEXT1 = (By.XPATH, "//strong[contains(text(), \"The shellcoder's handbook\")]")
-    TEXT2 = (By.XPATH, "//strong[contains(text(), \"Deferred benefit offer\")]")
+    PRODUCT_NAME_AFTER_ADD_BASKET = (By.CSS_SELECTOR, "div#messages .alert:nth-child(1) strong")
+    PRODUCT_NAME = (By.CSS_SELECTOR, "div.product_main > h1")
+    PRICE_IN_BASKET = (By.CSS_SELECTOR, "div.alertinner p:nth-child(1) strong")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "div > p.price_color")
 
 

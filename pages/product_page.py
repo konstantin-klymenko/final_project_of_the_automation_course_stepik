@@ -11,15 +11,21 @@ class ProductPage(BasePage):
     def switch_to_alert(self):
         alert = self.browser.switch_to.alert
 
-
+    #Check prodact name in basket
     def get_text_if_product_added(self):
-        text1_add = self.browser.find_element(*ProductPageLocators.TEXT1)
-        text1_compare = text1_add.text
-        assert "The shellcoder's handbook" == text1_compare, "product not added"
-        text2_add = self.browser.find_element(*ProductPageLocators.TEXT2)
-        text2_compare = text2_add.text
-        assert "Deferred benefit offer" == text2_compare, "product not added"
+        text1_add = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_AFTER_ADD_BASKET)
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
+        text1 = text1_add.text
+        product = product_name.text
+        assert text1 == product, "product not added"
 
+    #Сheck price in basket
+    def get_price_if_product_added(self):
+        product_price_add = self.browser.find_element(*ProductPageLocators.PRICE_IN_BASKET)
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
+        price_in_basket = product_price_add.text
+        price = product_price.text
+        assert price_in_basket == price, "product not added"
 
 
     #Конструкция для обработки исключений
