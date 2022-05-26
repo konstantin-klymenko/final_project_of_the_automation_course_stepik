@@ -21,3 +21,4 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, "div > p.price_color")
 
 
+
