@@ -1,10 +1,12 @@
 from selenium.common.exceptions import NoAlertPresentException  # Библиотека для  solve_quiz_and_get_code
 import math
+from selenium.common.exceptions import NoSuchElementException  # Библиотека для обработки исключений
+from .locators import MainPageLocators  # Импорт локаторов для методов (go_to_login_page и should_be_login_link)
+
 # Библиотеки для метода, который проверяет, что элемент не появляется на странице в течение заданного времени
 from selenium.common.exceptions import TimeoutException  # Библиотека для обработки исключений
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException  # Библиотека для обработки исключений
 ########################################################################################################################
 class BasePage():
     def __init__(self, browser, url, timeout=5):  # конструктор — метод, который вызывается, когда мы создаем объект.
@@ -58,4 +60,12 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+########################################################################################################################
+    # Проверка перехода на страницу логина
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        login_link.click()
 
+    # Проверка наличия ссылки для логина
+    def should_be_login_link(self):
+        assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
