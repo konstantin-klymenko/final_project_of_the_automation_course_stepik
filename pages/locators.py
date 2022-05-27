@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.XPATH, "//a[text()='Offers']") # Проверка негативного сценария
 
 
 class LoginPageLocators():
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    # LOGIN_LINK = (By.XPATH, "//a[text()='Offers']") #Проверка негативного сценария
+
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
 

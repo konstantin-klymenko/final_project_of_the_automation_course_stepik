@@ -1,11 +1,11 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
-
+from .locators import BasePageLocators
 
 class LoginPage(BasePage):
 
     def should_be_login_url(self):
-        login_link = self.browser.find_element(*LoginPageLocators.LOGIN_LINK)
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK_INVALID)
         login_link.click()
         assert "login" in self.browser.current_url,  "There is no word login in url"
 
