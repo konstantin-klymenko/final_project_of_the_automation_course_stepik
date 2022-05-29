@@ -1,9 +1,10 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
+
 class ProductPage(BasePage):
 
-    def add_product_to_backet(self):
+    def add_product_to_basket(self):
         add_button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON)
         add_button.click()
 
@@ -37,6 +38,16 @@ class ProductPage(BasePage):
     def message_disappeared_after_adding_product_to_basket(self):
         assert self.is_disappeared(*ProductPageLocators.PRODUCT_NAME_AFTER_ADD_BASKET), \
             "Success message is not disappeared, but should disappeared"
+
+    def guest_cant_see_text_if_basket_empty(self):
+        assert self.is_not_element_present(*ProductPageLocators.TEXT_WHEN_PRODUCT_IS_IN_BASKET), \
+            "Basket isn`t empty"
+
+    def guest_cant_see_product_if_basket_empty(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_IN_BASKET), \
+            "Basket isn`t empty"
+
+
 
 
 

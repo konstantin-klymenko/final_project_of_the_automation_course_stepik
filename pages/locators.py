@@ -3,11 +3,17 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    LOGIN_LINK_INVALID = (By.XPATH, "//a[text()='Offers']") # Проверка негативного сценария
+    LOGIN_LINK_INVALID = (By.XPATH, "//a[text()='Offers']")  # Проверка негативного сценария
+    BUTTON_SEE_BASKET = (By.CSS_SELECTOR, "span.btn-group a")  # Button for transit to basket
+
+
+class MainPageLocators():
+    # Элементы, которые будут если товар есть в корзине
+    TEXT_WHEN_PRODUCT_IS_IN_BASKET = (By.CSS_SELECTOR, "div.row h2.col-sm-6")
+    PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "img.thumbnail")
 
 
 class LoginPageLocators():
-
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
 
@@ -23,7 +29,9 @@ class ProductPageLocators():
     PRODUCT_NAME_AFTER_ADD_BASKET = (By.CSS_SELECTOR, "div#messages .alert:nth-child(1) strong")
     # Product price on the message after adding product to the basket
     PRICE_IN_BASKET = (By.CSS_SELECTOR, "div.alertinner p:nth-child(1) strong")
-
+    # Элементы, которые будут если товар есть в корзине
+    TEXT_WHEN_PRODUCT_IS_IN_BASKET = (By.CSS_SELECTOR, "div.row h2.col-sm-6")
+    PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "img.thumbnail")
 
 
 

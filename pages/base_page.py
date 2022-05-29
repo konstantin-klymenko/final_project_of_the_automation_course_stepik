@@ -69,3 +69,9 @@ class BasePage():
     # Проверка наличия ссылки для логина
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+########################################################################################################################
+    def go_to_basket(self):
+        button_see_basket = self.browser.find_element(*BasePageLocators.BUTTON_SEE_BASKET)
+        button_see_basket.click()
+
+
