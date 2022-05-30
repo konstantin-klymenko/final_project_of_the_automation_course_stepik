@@ -1,4 +1,5 @@
 from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
 import time
 import pytest
 
@@ -109,24 +110,32 @@ def test_guest_can_add_product_to_basket_promo(browser, link):
     page.get_price_if_product_added()
 
 
-# @pytest.mark.new
-# class TestUserAddToBasketFromProductPage():
-#
-#     def test_user_can_add_product_to_basket(self, browser):
-#         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-#         page = ProductPage(browser, link)
-#         page.open()
-#         page.add_product_to_basket()
-#         page.switch_to_alert()
-#         page.solve_quiz_and_get_code()
-#         time.sleep(5)
-#         page.get_text_if_product_added()
-#         page.get_price_if_product_added()
-#
-#     def test_user_cant_see_success_message(browser):
-#         # Товар Coders at Work
-#         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-#         page = ProductPage(browser, link)
-#         page.open()
-#         page.guest_cant_see_success_message()
+@pytest.mark.new
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/da/accounts/login/"
+        page = LoginPage(browser, link)
+        page.open()
+        page.register_new_user()
+        time.sleep(6)
+        page.should_be_authorized_user()  # Тянет с base_page
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_product_to_basket()
+        page.switch_to_alert()
+        page.solve_quiz_and_get_code()
+        time.sleep(2)
+        page.get_text_if_product_added()
+        page.get_price_if_product_added()
+
+    def test_user_cant_see_success_message(self, browser):
+        # Товар Coders at Work
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+        page = ProductPage(browser, link)
+        page.open()
+        page.guest_cant_see_success_message()
 
