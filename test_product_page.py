@@ -14,12 +14,15 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 
 # Переход на страницу логина
-@pytest.mark.inheritance
+@pytest.mark.new
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)  # Инициализируем LoginPage в теле теста
+    login_page.should_be_login_form()
+    time.sleep(3)
 
 
 # Негативный тест о том что пользователь не должен видеть сообщение об успешном добавлении товара в корзину
@@ -110,7 +113,7 @@ def test_guest_can_add_product_to_basket_promo(browser, link):
     page.get_price_if_product_added()
 
 
-@pytest.mark.new
+
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
