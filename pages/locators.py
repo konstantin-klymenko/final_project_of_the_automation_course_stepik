@@ -8,7 +8,7 @@ class BasePageLocators():
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")  # Иконка если юзер успешно зарегистрировался
 
 
-class MainPageLocators():
+class BasketPageLocators():
     # Элементы, которые будут если товар есть в корзине
     TEXT_WHEN_PRODUCT_IS_IN_BASKET = (By.CSS_SELECTOR, "div.row h2.col-sm-6")
     PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "img.thumbnail")
@@ -37,9 +37,7 @@ class ProductPageLocators():
     PRODUCT_NAME_AFTER_ADD_BASKET = (By.CSS_SELECTOR, "div#messages .alert:nth-child(1) strong")
     # Product price on the message after adding product to the basket
     PRICE_IN_BASKET = (By.CSS_SELECTOR, "div.alertinner p:nth-child(1) strong")
-    # Элементы, которые будут если товар есть в корзине
-    TEXT_WHEN_PRODUCT_IS_IN_BASKET = (By.CSS_SELECTOR, "div.row h2.col-sm-6")
-    PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "img.thumbnail")
+
 
 
 

@@ -1,15 +1,18 @@
-from .pages.main_page import MainPage
+from .pages.main_page import MainPage  # импортируем в файл нужный класс
 from .pages.login_page import LoginPage  # импортируем в файл нужный класс
+from .pages.basket_page import BasketPage  # импортируем в файл нужный класс
 import pytest
 
 
+@pytest.mark.new
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
     page.open()
     page.go_to_basket()
-    page.guest_cant_see_text_if_basket_empty()
-    page.guest_cant_see_product_if_basket_empty()
+    basket_page = BasketPage(browser, browser.current_url)  # Инициализируем LoginPage в теле теста
+    basket_page.guest_cant_see_product_if_basket_empty()
+    basket_page.guest_cant_see_text_if_basket_empty()
 
 
 @pytest.mark.login_guest
