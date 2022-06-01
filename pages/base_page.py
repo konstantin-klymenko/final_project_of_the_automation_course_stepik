@@ -1,24 +1,25 @@
-from selenium.common.exceptions import NoAlertPresentException  # Библиотека для  solve_quiz_and_get_code
-from selenium.common.exceptions import NoSuchElementException  # Библиотека для обработки исключений
+# Library for solve_quiz_and_get_code
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException
 from .locators import BasePageLocators
 import math
-# Библиотеки для метода, который проверяет, что элемент не появляется на странице в течение заданного времени
-from selenium.common.exceptions import TimeoutException  # Библиотека для обработки исключений
+# Libraries for a method that checks that an element does not appear on the page within a given time
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage():
-    def __init__(self, browser, url, timeout=5):  # конструктор — метод, который вызывается, когда мы создаем объект.
+    def __init__(self, browser, url, timeout=5):  # Constructor is a method that is called when we create an object.
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
 
-    # метод open открывает нужную страницу в браузере, используя метод get()
+    # The open method opens the desired page in the browser using the get() method
     def open(self):
         self.browser.get(self.url)
 
-    # Метод для подсчета математического выражения и ввода ответа для test_product_page.py
+    # Method for calculating the mathematical expression and entering the answer
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -33,7 +34,7 @@ class BasePage():
         except NoAlertPresentException:
             print("No second alert presented")
 
-    # метод, который проверяет, что элемент не появляется на странице в течение заданного времени
+    # Method that checks that the element does not appear on the page for a given time
     def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
@@ -42,8 +43,8 @@ class BasePage():
 
         return False
 
-    # Метод для проверки, что какой-то элемент исчезает, его следует применять с явным ожиданием
-    # и с функцией until_not, в зависимости от того, какой результат мы ожидаем
+    # Method to check if some element disappears, should be used with an explicit wait
+    # and with the until_not function, depending on what result we expect
     def is_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException). \
@@ -53,7 +54,7 @@ class BasePage():
 
         return True
 
-    # Конструкция для обработки исключений
+    # Exception handling construct
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
@@ -61,21 +62,21 @@ class BasePage():
             return False
         return True
 
-    # Проверка перехода на страницу логина
+    # Checking the transition to the login page
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
-    # Проверка наличия ссылки для логина
+    # Check if there is a login link
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
-    # Метод для перехода в корзину
+    # Method for go to cart
     def go_to_basket(self):
         button_see_basket = self.browser.find_element(*BasePageLocators.BUTTON_SEE_BASKET)
         button_see_basket.click()
 
-    # Проверка того что юзер авторизирован
+    # Check if the user is logged in
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"

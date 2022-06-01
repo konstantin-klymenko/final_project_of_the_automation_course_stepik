@@ -36,7 +36,6 @@ class TestUserAddToBasketFromProductPage():
         page.get_price_if_product_added()
 
     def test_user_cant_see_success_message(self, browser):
-        # Товар Coders at Work
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
         page = ProductPage(browser, link)
         page.open()
@@ -76,7 +75,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
-# Негативный тест о том что пользователь не должен видеть сообщение об успешном добавлении товара в корзину
+# Negative test that the user should not see a message about the successful addition of the product to the cart
 @pytest.mark.neg
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
@@ -90,20 +89,18 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.guest_cant_see_success_message_after_adding_product_to_basket()
 
 
-# Пользователь не должен видеть сообщение об успешном добавлении товара в корзину так как он его не добавил
+# The user should not see a message about the successful addition of the product to the cart because he did not add it
 def test_guest_cant_see_success_message(browser):
-    # Товар Coders at Work
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser, link)
     page.open()
     page.guest_cant_see_success_message()
 
 
-# Негативный тест сообщение об успешном добавлении товара в корзину должно пропасть после добавления товара
+# Negative text message about successfully adding item to cart should disappear after item is added
 @pytest.mark.neg
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
-    # Товар Coders at Work
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser, link)
     page.open()
@@ -113,7 +110,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.message_disappeared_after_adding_product_to_basket()
 
 
-# Клиент может добавить акционный продукт в корзину (ссылка содержит дополнение "?promo=offerN")
+# The client can add the promotional product to the cart (the link contains the addition "?promo=offerN")
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",

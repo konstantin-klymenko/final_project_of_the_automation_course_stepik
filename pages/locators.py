@@ -3,13 +3,16 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    LOGIN_LINK_INVALID = (By.XPATH, "//a[text()='Offers']")  # Проверка негативного сценария
-    BUTTON_SEE_BASKET = (By.CSS_SELECTOR, "span.btn-group a")  # Button for transit to basket
-    USER_ICON = (By.CSS_SELECTOR, ".icon-user")  # Иконка если юзер успешно зарегистрировался
+    # Checking the negative scenario
+    LOGIN_LINK_INVALID = (By.XPATH, "//a[text()='Offers']")
+    # Button for transit to basket
+    BUTTON_SEE_BASKET = (By.CSS_SELECTOR, "span.btn-group a")
+    # Icon if the user has successfully registered
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
 class BasketPageLocators():
-    # Элементы, которые будут если товар есть в корзине
+    # Items that will be available if the product is in the cart
     TEXT_WHEN_PRODUCT_IS_IN_BASKET = (By.CSS_SELECTOR, "div.row h2.col-sm-6")
     PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "img.thumbnail")
 
