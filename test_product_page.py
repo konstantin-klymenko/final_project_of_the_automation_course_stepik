@@ -4,7 +4,7 @@ from .pages.basket_page import BasketPage
 import pytest
 
 
-@pytest.mark.need_review
+@pytest.mark.new
 def test_guest_cant_see_product_in_basket_opened_from_product_page_when_it_is_empty(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser, link)
